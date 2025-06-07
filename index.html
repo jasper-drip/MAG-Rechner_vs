@@ -211,6 +211,15 @@
         }
 
 
+        #vorlaufInput::placeholder {
+          color: gray;
+        }
+        
+        .unit {
+        color: black;
+        margin-left: 5px; /* Optional: adds a little space between input and unit */
+        }   
+
         .menu-content {
             padding: 10px 0; 
             text-align: left; 
@@ -369,39 +378,39 @@
             <div class="input-row">
                 <span class="input-label">Vorlauf</span>
                 <div class="input-field-area bg-cyan-custom">
-                    <input type="number" class="value-input" id="vGradCInput" value="0" aria-label="V input">
-                    <span class="unit-span">°C</span>
+                    <input type="number" class="value-input" id="vGradCInput" placeholder="0" aria-label="V input">
+                    <span class="unit">°C</span>
                 </div>
             </div>
             <div class="input-row">
                 <span class="input-label">Anlagen Höhe<br>über MAG</span>
                 <div class="input-field-area bg-cyan-custom">
-                    <input type="number" class="value-input" id="hMeterInput" value="0" aria-label="H input">
-                    <span class="unit-span">m</span>
+                    <input type="number" class="value-input" id="hMeterInput" placeholder="0" aria-label="H input">
+                    <span class="unit">m</span>
                 </div>
             </div>
             <div class="input-row">
                 <span class="input-label">Leistung</span>
                 <div class="input-field-area bg-cyan-custom">
-                    <input type="number" class="value-input" id="leistungKwInput" value="0" aria-label="L input">
-                    <span class="unit-span">kw</span>
+                    <input type="number" class="value-input" id="leistungKwInput" placeholder="0" aria-label="L input">
+                    <span class="unit">kw</span>
                 </div>
             </div>
             <div class="input-row">
                 <span class="input-label">Sicherheits<br>ventil</span>
                 <div class="input-field-area bg-cyan-custom">
                     <input type="number" class="value-input" id="svBarInput" value="3" aria-label="SV input">
-                    <span class="unit-span">bar</span>
+                    <span class="unit">bar</span>
                 </div>
             </div>
         </div>
 
         <div class="input-section">
             <div class="input-row">
-                <span class="input-label">Speicher</span>
+                <span class="input-label">Pufferspeicher</span>
                 <div class="input-field-area bg-speicher-custom"> 
-                    <input type="number" class="value-input" id="speicherLiterInput" value="0" aria-label="Speicher input">
-                    <span class="unit-span">Liter</span>
+                    <input type="number" class="value-input" id="speicherLiterInput" placeholder="0" aria-label="Speicher input">
+                    <span class="unit">Liter</span>
                 </div>
             </div>
         </div>
@@ -414,8 +423,8 @@
                     <div class="red-area-for-image"> 
                      </div>
                 
-                     <input type="number" class="value-input" id="mainRadiatorInput" value="0" aria-label="Radiator input">
-                    <span class="unit-span">%</span>
+                     <input type="number" class="value-input" id="mainRadiatorInput" placeholder="0" aria-label="Radiator input">
+                    <span class="unit">%</span>
                 </div>
             </div>
             <div class="input-row">
@@ -424,8 +433,8 @@
 
                      </div>
 
-                     <input type="number" class="value-input" id="plattenheizkoerperPercentInput" value="0" aria-label="Plattenheizkörper input">
-                    <span class="unit-span">%</span>
+                     <input type="number" class="value-input" id="plattenheizkoerperPercentInput" placeholder="0" aria-label="Plattenheizkörper input">
+                    <span class="unit">%</span>
                 </div>
             </div>
             <div class="input-row">
@@ -433,8 +442,8 @@
                 <div class="input-field-area bg-konvektor-custom" id="konvektorFieldArea"> 
                     <div class="red-area-for-image"> 
                      </div>
-                     <input type="number" class="value-input" id="konvektorPercentInput" value="0" aria-label="Konvektor input">
-                    <span class="unit-span">%</span>
+                     <input type="number" class="value-input" id="konvektorPercentInput" placeholder="0" aria-label="Konvektor input">
+                    <span class="unit">%</span>
                 </div>
             </div>
             <div class="input-row">
@@ -442,8 +451,8 @@
                 <div class="input-field-area bg-fussbodenheizung-custom" id="fussbodenheizungFieldArea"> 
                     <div class="red-area-for-image"> 
                      </div>
-                     <input type="number" class="value-input" id="fussbodenheizungPercentInput" value="0" aria-label="Fußbodenheizung input">
-                    <span class="unit-span">%</span>
+                     <input type="number" class="value-input" id="fussbodenheizungPercentInput" placeholder="0" aria-label="Fußbodenheizung input">
+                    <span class="unit">%</span>
                 </div>
                 
             </div>
@@ -806,3 +815,4 @@
     </script>
 </body>
 </html>
+
