@@ -812,6 +812,31 @@
         });
 
         window.addEventListener('load', calculateAndUpdateMenuValues);
+
+        // Add Enter key navigation
+        const allInputs = [
+            vGradCInput,
+            hMeterInput,
+            leistungKwInput,
+            svBarInput,
+            speicherLiterInput,
+            radiatorTypeInputs.mainRadiatorInput,
+            radiatorTypeInputs.plattenheizkoerperPercentInput,
+            radiatorTypeInputs.konvektorPercentInput,
+            radiatorTypeInputs.fussbodenheizungPercentInput
+        ].filter(input => input); // Filter out any null/undefined inputs
+
+        allInputs.forEach((input, index) => {
+            input.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // Prevent default Enter key action
+                    const nextInput = allInputs[index + 1];
+                    if (nextInput) {
+                        nextInput.focus();
+                    }
+                }
+            });
+        });
         
     </script>
 </body>
