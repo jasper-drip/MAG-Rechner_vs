@@ -294,8 +294,6 @@
             color: #2d3748;
         }
 
-
-        /* Responsive adjustments */
         @media (max-width: 480px) {
             .app-container, .menu-interface-container {
                 padding: 20px; 
@@ -729,7 +727,6 @@
                 menuVvValueSpan.textContent = currentVv.toFixed(2);
             }
 
-            // If sum of radiator percentages is not 100% OR Leistung is 0, then MAG values are 0.00
             if (sumOfRadiatorPercentages !== 100 || leistungKw === 0) {
                 currentMagLiter = 0;
                 if (magLiterResultInput) magLiterResultInput.value = "0.00";
@@ -749,7 +746,7 @@
                     if (currentMagLiter !== "Error" && (currentMagLiter - currentVv) !== 0 && typeof currentMagLiter === 'number') {
                         fuelldruckValue = (((currentPe1 + 1) * currentMagLiter) / (currentMagLiter - currentVv)) - 1;
                     } else {
-                        // Default to 0 if calculation isn't possible (e.g., MAG Liter is "Error" or division by zero)
+                     
                         fuelldruckValue = 0; 
                     }
                     fuelldruckResultInput.value = (typeof fuelldruckValue === 'number') ? fuelldruckValue.toFixed(2) : fuelldruckValue;
