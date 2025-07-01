@@ -59,23 +59,23 @@
         .menu-icon:hover {
             background-color: #edf2f7; 
         }
+
         .help-icon {
-            font-size: 1.8rem;
-            color: #4a5568;
-            text-decoration: none;
-            cursor: pointer;   
-            padding: 8px;       
-            border-radius: 8px;   
-            margin-left: 100px;   
-            transition: background-color 0.2s ease-in-out;
-            display: inline-flex; 
-            align-items: center;
+            font-size: 1.8rem; 
+            color: #4a5568;    
+            text-decoration: none; 
+            cursor: pointer;       
+            padding: 8px;          
+            border-radius: 8px;    
+            margin-left: 100px;     
+            transition: background-color 0.2s ease-in-out; 
+            display: inline-flex;  
+            align-items: center;   
         }
         .help-icon:hover {
             background-color: #edf2f7; 
         }
-
-
+        
 
         .input-section {
             margin-bottom: 25px; 
@@ -95,17 +95,22 @@
             border-bottom: 1px solid #e2e8f0; 
         }
 
+        /* Add a border under the last Zusatzfeld for visual separation */
+        #additionalInputsContainer .input-row:last-child {
+            border-bottom: 1px solid #e2e8f0;
+        }
+
 
         .input-label {
-            background-color: #f7fafc;
+            background-color: #f7fafc; 
             color: #4a5568; 
             padding: 14px 18px; 
-            font-size: 1.05rem;
+            font-size: 1.05rem; 
             font-weight: 500; 
             display: flex;
             align-items: center;
             justify-content: flex-start; 
-            min-width: 180px;
+            min-width: 180px; 
             border-right: 1px solid #e2e8f0; 
             box-sizing: border-box;
             word-break: break-word; 
@@ -191,8 +196,19 @@
             margin: 0; 
         }
         .value-input[type=number] { 
-            -moz-appearance: textfield;
+            -moz-appearance: textfield; 
+            appearance: none; 
+        }
+        select.value-input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
             appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            cursor: pointer;
         }
         .unit-span {
             font-size: 1rem; 
@@ -203,10 +219,10 @@
         .input-field-sub-label {
             text-align: right;
             padding-right: 18px; 
-            margin-top: 4px;  
+            margin-top: 4px;   
             margin-bottom: 10px;
             font-size: 0.85rem; 
-            color: #718096; 
+            color: #718096;    
         }
 
 
@@ -309,32 +325,32 @@
             }
             
             .help-icon {
-                font-size: 1.6rem;
+                font-size: 1.6rem; 
                 margin-left: 10px; 
             }
             .input-label { 
                 font-size: 0.95rem; 
                 padding: 12px 15px; 
-                width: 120px;
+                width: 120px; 
             }
             .input-field-area {
-                font-size: 1rem;    
+                font-size: 1rem;   
                 padding: 12px 15px;
             }
             .input-field-area.warning-bg::before {
                 font-size: 2.5rem; 
             }
              #radiatorSumWarning { 
-                font-size: 0.85rem;
+                font-size: 0.85rem; 
             }
             .value-input, .unit-span {
-                font-size: 1rem;
+                font-size: 1rem; 
             }
              .unit-span { color: #a0aec0; } 
             .input-field-sub-label {
                 padding-right: 15px; 
-                font-size: 0.8rem;  
-                margin-bottom: 8px;  
+                font-size: 0.8rem;   
+                margin-bottom: 8px; 
             }
 
             .menu-content li {
@@ -350,17 +366,35 @@
             }
         }
 .red-area-for-image {
-            margin-right: 0px;
+            margin-right: 0px; 
         }
         .field-image {
-            height: 30px; 
+            height: 30px;
             width: 40px;  
-            display: block;
+            display: block; 
             border-radius: 0px;
             margin-left: -8px; 
             margin-right: 8px;  
             }
-            
+
+       .nine-dots-symbol {
+            text-align: center;
+            color: #718096; /* A bit darker grey for better readability */
+            font-size: 14px;   /* Increased font size for the text */
+            font-weight: 500;
+            line-height: 1.5; /* Adjusted for better text readability */
+            margin-top: 4px; /* More space above */
+            margin-bottom: 4px; /* More space below */
+            cursor: pointer; /* Make it look clickable */
+        }
+        
+        #gebaeudeartSelect {
+            font-size: 0.95rem; /* Slimmer font size */
+            font-weight: 400;   /* Normal font weight for a slimmer look */
+            text-align: right;  /* Align text to the right side */
+        }
+
+
   </style>
 </head>
 <body>
@@ -394,11 +428,61 @@
                 </div>
             </div>
             <div class="input-row">
-                <span class="input-label">Leistung für Heizung</span>
+                <span class="input-label">Leistung für Heizung </span>
                 <div class="input-field-area bg-cyan-custom">
                     <input type="number" class="value-input" id="leistungKwInput" placeholder="8" aria-label="L input">
                     <span class="unit">kw</span>
                 </div>
+            </div>
+            <!-- Moved Zusatzfeld 1-4 area here -->
+            <div id="additionalInputsContainer" class="hidden">
+                <div class="input-row">
+                    
+                    <div class="input-field-area">
+                        <select class="value-input" id="gebaeudeartSelect" aria-label="Gebäudeart selection">
+                            <option value="">-- Bitte auswählen --</option>
+                            <option value="0.1">Passivhaus</option>
+                            <option value="0.15">Niedrigenergiehaus</option>
+                            <option disabled>──────────────────</option>
+                            <option value="0.35">Geb. n. EnEV 2016</option>
+                            <option value="1.09">Geb. n. EnEV 2009</option>
+                            <option value="1.29">Geb. n. EnEV 2002</option>
+                            <option value="1.91">Geb. n. WSchV 1995</option>
+                            <option value="2.83">Geb. n. DIN 4701</option>
+                            <option disabled>──────────────────</option>
+                            <option value="3.1">Altbau 1977 – 1983</option>
+                            <option value="4.29">Altbau 1970 – 1976</option>
+                            <option value="4.66">Altbau ab 1969</option>
+                            <option value="5.06">Altbau ab 1959</option>
+                            <option value="5">Altbau &lt; 1949 (Lehm)</option>
+                            <option value="5.24">Altbau &lt; 1949 (Ziegel)</option>
+                        </select>
+                   </div>
+                </div>
+                <div class="input-row">
+                    <span class="input-label">Wohnfläche</span>
+                    <div class="input-field-area">
+                        <input type="text" class="value-input" id="wohnflaecheInput" placeholder="0" aria-label="Wohnfläche">
+                        <span class="unit">m²</span>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <span class="input-label">norm<br>außentemperatur</span>
+                    <div class="input-field-area">
+                        <input type="text" class="value-input" id="normAussentempInput" placeholder="-11" aria-label="norm außentemperatur">
+                        <span class="unit">°C</span>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <span class="input-label">soll raum<br>temparatur</span>
+                    <div class="input-field-area">
+                        <input type="text" class="value-input" id="sollRaumtempInput" placeholder="20" aria-label="soll raum temparatur">
+                        <span class="unit">°C</span>
+                    </div>
+                </div>
+            </div>
+            <div class="nine-dots-symbol" id="nineDotsSymbol" >
+           leistung ermitteln
             </div>
         </div>
 
@@ -537,6 +621,9 @@
         const openMenuBtn = document.getElementById('openMenuBtn');
         const closeMenuBtn = document.getElementById('closeMenuBtn');
 
+        const nineDotsSymbol = document.getElementById('nineDotsSymbol');
+        const additionalInputsContainer = document.getElementById('additionalInputsContainer');
+
         const leistungKwInput = document.getElementById('leistungKwInput');
         const speicherLiterInput = document.getElementById('speicherLiterInput'); 
         const vGradCInput = document.getElementById('vGradCInput'); 
@@ -553,6 +640,13 @@
         const menuPe1ValueSpan = document.getElementById('menuPe1Value'); 
         const menuPe2ValueSpan = document.getElementById('menuPe2Value'); 
         const menuVvValueSpan = document.getElementById('menuVvValue');
+
+        // Inputs for Heizlast calculation
+        const gebaeudeartSelect = document.getElementById('gebaeudeartSelect');
+        const wohnflaecheInput = document.getElementById('wohnflaecheInput');
+        const normAussentempInput = document.getElementById('normAussentempInput');
+        const sollRaumtempInput = document.getElementById('sollRaumtempInput');
+
         
         const radiatorTypeInputs = {
             "mainRadiatorInput": document.getElementById("mainRadiatorInput"),
@@ -589,6 +683,31 @@
         let currentVv = 0;
         let currentAusdehnungsvolumen = 0;
         let currentMagLiter = 0; 
+
+        function calculateHeizlast() {
+            const gebaeudeartValue = parseFloat(gebaeudeartSelect.value) || 0;
+            const wohnflaeche = parseFloat(wohnflaecheInput.value) || 0;
+            // Use placeholder values as defaults if input is empty
+            const normAussentemp = parseFloat(normAussentempInput.value) || parseFloat(normAussentempInput.placeholder) || 0;
+            const sollRaumtemp = parseFloat(sollRaumtempInput.value) || parseFloat(sollRaumtempInput.placeholder) || 0;
+
+            // Only calculate if we have the necessary values
+            if (gebaeudeartValue > 0 && wohnflaeche > 0) {
+                // The user's formula: (soll raum + 273) - (norm außentemperatur + 273) simplifies to the temperature difference (Delta T)
+                const deltaT = sollRaumtemp - normAussentemp;
+                
+                // Formula: (DeltaT * Wohnfläche * Gebäudeart-Wert) / 1000
+                // This calculates the heating load in kW.
+                const heizlastW = deltaT * wohnflaeche * gebaeudeartValue;
+                const heizlastKw = heizlastW / 1000;
+
+                // Update the "Leistung für Heizung" input field
+                leistungKwInput.value = heizlastKw.toFixed(2);
+                
+                // Trigger the main calculation chain because "Leistung für Heizung" was updated
+                calculateAndUpdateMenuValues();
+            }
+        }
 
         function updateAusdehnungsfaktor() {
             if (!vGradCInput || !menuAusdehnungsfaktorValueSpan) {
@@ -727,6 +846,7 @@
                 menuVvValueSpan.textContent = currentVv.toFixed(2);
             }
 
+        
             if (sumOfRadiatorPercentages !== 100 || leistungKw === 0) {
                 currentMagLiter = 0;
                 if (magLiterResultInput) magLiterResultInput.value = "0.00";
@@ -746,22 +866,24 @@
                     if (currentMagLiter !== "Error" && (currentMagLiter - currentVv) !== 0 && typeof currentMagLiter === 'number') {
                         fuelldruckValue = (((currentPe1 + 1) * currentMagLiter) / (currentMagLiter - currentVv)) - 1;
                     } else {
-                     
+                      
                         fuelldruckValue = 0; 
                     }
                     fuelldruckResultInput.value = (typeof fuelldruckValue === 'number') ? fuelldruckValue.toFixed(2) : fuelldruckValue;
                 }
             }           
             
+
+
         }
-       
+        
         if (openMenuBtn && mainAppContainer && menuInterfaceContainer) {
             openMenuBtn.addEventListener('click', () => {
                 try {
                     calculateAndUpdateMenuValues();
                 } catch (e) {
                     console.error("Error during menu value calculation:", e);
-             
+                    
                 }
                 mainAppContainer.classList.add('hidden');
                 menuInterfaceContainer.classList.remove('hidden');
@@ -780,12 +902,20 @@
             });
         } else {
             if (!closeMenuBtn) console.error("Error: Button with ID 'closeMenuBtn' not found.");
-           
+            
             if (!mainAppContainer && !(openMenuBtn && menuInterfaceContainer)) console.error("Error: Container with ID 'mainAppContainer' not found (related to close menu logic).");
             if (!menuInterfaceContainer && !(openMenuBtn && mainAppContainer)) console.error("Error: Container with ID 'menuInterfaceContainer' not found (related to close menu logic).");
         }
 
-       
+        if (nineDotsSymbol && additionalInputsContainer) {
+            nineDotsSymbol.addEventListener('click', () => {
+                additionalInputsContainer.classList.toggle('hidden');
+            });
+        } else {
+            if (!nineDotsSymbol) console.error("Error: Element with ID 'nineDotsSymbol' not found.");
+            if (!additionalInputsContainer) console.error("Error: Element with ID 'additionalInputsContainer' not found.");
+        }
+     
         [leistungKwInput, speicherLiterInput, vGradCInput, hMeterInput, svBarInput, 
          radiatorTypeInputs.mainRadiatorInput, 
          radiatorTypeInputs.plattenheizkoerperPercentInput,
@@ -797,9 +927,16 @@
             }
         });
 
+        // Add event listeners for the new heating load calculation
+        [gebaeudeartSelect, wohnflaecheInput, normAussentempInput, sollRaumtempInput].forEach(input => {
+            if (input) {
+                input.addEventListener('input', calculateHeizlast);
+            }
+        });
+
         window.addEventListener('load', calculateAndUpdateMenuValues);
 
-        
+      
         const allInputs = [
             vGradCInput,
             hMeterInput,
@@ -827,4 +964,3 @@
     </script>
 </body>
 </html>
-
