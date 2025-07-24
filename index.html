@@ -1,386 +1,626 @@
- .app-container, .menu-interface-container { 
-            background-color: #ffffff; 
-            border-radius: 12px; 
-            padding: 25px; 
-            width: 100%;
-            max-width: 480px; 
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); 
-        }
 
-        .hidden {
-            display: none !important; 
-        }
-
-        .header {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAG Anlage</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="icon" type="image/png" href="img/ice.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f9; 
             display: flex;
-            justify-content: space-between; 
-            align-items: center;
-            margin-bottom: 30px; 
-        }
-
-        .app-title { 
-            font-size: 2rem; 
-            font-weight: 700;
-            color: #2d3748; 
-            margin-bottom: 0; 
-            text-align: left; 
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 6px; /* Controls spacing between icons */
-        }
-
-        .menu-icon {
-            font-size: 1.8rem; 
-            font-weight: bold;
-            color: #4a5568; 
-            cursor: pointer;
-            padding: 8px; 
-            border-radius: 8px;
-            transition: background-color 0.2s ease-in-out;
-        }
-        .menu-icon:hover {
-            background-color: #edf2f7; 
-        }
-
-        .help-icon {
-            font-size: 1.8rem; 
-            color: #4a5568;    
-            text-decoration: none; 
-            cursor: pointer;       
-            padding: 8px;          
-            border-radius: 8px;    
-            transition: background-color 0.2s ease-in-out; 
-            display: inline-flex;  
-            align-items: center;   
-        }
-        .help-icon:hover {
-            background-color: #edf2f7; 
-        }
-        
-        .reset-icon {
-            width: 20px;
-            height: 25px;
-            cursor: pointer;
-            border-radius: 4px; /* Optional: for a softer look */
-            
-        }
-
-
-        .input-section {
-            margin-bottom: 25px; 
-            border: 1px solid #e2e8f0; 
-            border-radius: 10px; 
-            overflow: hidden; 
-        }
-        .input-section:last-child {
-            margin-bottom: 0;
-        }
-
-        .input-row {
-            display: flex;
-            background-color: #ffffff; 
-        }
-         .input-section .input-row:not(:last-child) {
-            border-bottom: 1px solid #e2e8f0; 
-        }
-
-        /* Add a border under the last Zusatzfeld for visual separation */
-        #additionalInputsContainer .input-row:last-child {
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-
-        .input-label {
-            background-color: #f7fafc; 
-            color: #4a5568; 
-            padding: 14px 18px; 
-            font-size: 1.05rem; 
-            font-weight: 500; 
-            display: flex;
-            align-items: center;
-            justify-content: flex-start; 
-            min-width: 180px; 
-            border-right: 1px solid #e2e8f0; 
-            box-sizing: border-box;
-            word-break: break-word; 
-        }
-
-
-        .input-field-area {
-            flex-grow: 1; 
-            padding: 14px 18px; 
-            font-size: 1.1rem; 
-            color: #1a202c; 
-            text-align: right; 
-            box-sizing: border-box;
-            display: flex; 
-            justify-content: flex-end;
-            align-items: center;
-            position: relative; 
-             min-width: 100px;
-        }
-        
-        .bg-cyan-custom { background-color: #e6fffa; border-left: 4px solid #38b2ac; } 
-        .bg-speicher-custom { background-color: #fef3f1; border-left: 4px solid #f6ad9a; } 
-        .bg-lightblue-custom { background-color: #ebf8ff; border-left: 4px solid #4299e1; } 
-        
-        .input-field-area.bg-cyan-custom,
-        .input-field-area.bg-speicher-custom,
-        .input-field-area.bg-lightblue-custom {
-            padding-left: calc(18px - 4px); 
-        }
-
-        .bg-radiator-custom { background-color: #fdf5f5; }
-        .bg-plattenheizkoerper-custom { background-color: #fdf5f5; }
-        .bg-konvektor-custom { background-color: #fdf5f5; }
-        .bg-fussbodenheizung-custom { background-color: #fdf5f5; }
-
-        .input-field-area.warning-bg::before {
-            content: "!"; 
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3rem; 
-            font-weight: bold;
-            color: rgba(128, 128, 128, 0.3); 
-            z-index: 0; 
-            pointer-events: none; 
-        }
-        .input-field-area.warning-bg .value-input,
-        .input-field-area.warning-bg .unit-span {
-            position: relative; 
-            z-index: 1;
-        }
-        #radiatorSumWarning { 
-            text-align: center;
-            color: #718096; 
-            font-size: 0.85rem;
-            padding: 5px 0; 
-            margin-bottom: 15px; 
-        }
-
-
-        .value-input {
-            flex-grow: 1; 
-            width: auto; 
-            background-color: transparent; 
-            border: none;
-            text-align: right; 
-            font-size: 1.1rem; 
-            font-family: 'Inter', sans-serif; 
-            color: #1a202c; 
-            padding: 0; 
-            margin-right: 8px; 
-        }
-        .value-input:focus { 
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3); 
-            border-radius: 3px; 
-        }
-        .value-input::-webkit-outer-spin-button,
-        .value-input::-webkit-inner-spin-button { 
-            -webkit-appearance: none; 
-            appearance: none; 
-            margin: 0; 
-        }
-        .value-input[type=number] { 
-            -moz-appearance: textfield; 
-            appearance: none; 
-        }
-        select.value-input {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right 0.5rem center;
-            background-repeat: no-repeat;
-            background-size: 1.5em 1.5em;
-            padding-right: 2.5rem;
-            cursor: pointer;
-        }
-        .unit-span {
-            font-size: 1rem; 
-            font-family: 'Inter', sans-serif; 
-            color: #718096; 
-            white-space: nowrap; 
-        }
-        .input-field-sub-label {
-            text-align: right;
-            padding-right: 18px; 
-            margin-top: 4px;   
-            margin-bottom: 10px;
-            font-size: 0.85rem; 
-            color: #718096;    
-        }
-
-
-        #vorlaufInput::placeholder {
-          color: gray;
-        }
-        
-        .unit {
-        color: black;
-        margin-left: 5px; 
-        }   
-
-        .menu-content {
-            padding: 10px 0; 
-            text-align: left; 
-            color: #2d3748; 
-        }
-        .menu-content ul {
-            list-style: none; 
-            padding: 0;
+            justify-content: center;
+            align-items: flex-start; 
+            min-height: 100vh;
             margin: 0;
+            padding: 20px; 
         }
-        .menu-content li {
-            font-size: 1.05rem; 
-            padding: 14px 20px; 
-            border-bottom: 1px solid #edf2f7; 
-            display: flex; 
-            align-items: center; 
-        }
-        .menu-content li:last-child {
-            border-bottom: none; 
-        }
-        .menu-content li .item-name {
-            flex-basis: 50%; 
-            word-break: break-word;
-            color: #4a5568; 
-            display: flex; 
-            align-items: center;
-        }
-        .menu-content li .value {
-            font-weight: 600; 
-            min-width: 30px; 
-            text-align: right;
-            flex-basis: 20%; 
-            margin-left: 5px;
-            color: #2d3748; 
-        }
-        .menu-content li .calculated-value { 
-            font-weight:500; 
-            color: #4a5568; 
-            min-width: 50px; 
-            text-align: right;
-            flex-basis: 30%; 
-            padding-left: 10px; 
-        }
-        .menu-summary-row { 
-            font-size: 1.05rem;
-            padding: 16px 20px; 
-            display: flex;
-            justify-content: space-between;
-            border-top: 1px solid #e2e8f0; 
-            margin-top: 8px; 
-        }
-        .menu-summary-row.main-total { 
-             border-top: 2px solid #cbd5e0; 
-             margin-top: 15px; 
-             font-weight: 600; 
-        }
-        .menu-summary-row.bold { 
-            font-weight: 600; 
-        }
-         .menu-summary-row.normal-weight { 
-            font-weight: 500; 
-            color: #4a5568;
-        }
+    </style>
+</head>
+<body>
+    <div class="app-container" id="mainAppContainer">
+        <div class="header">
+            <div class="app-title">MAG RECHNER</div>
+            <div class="header-actions">
+                <img src="img/sy mull.jpg" id="resetBtn" class="reset-icon" title="Werte zurücksetzen" alt="Eingaben zurücksetzen">
+                <a href="https://jasper-drip.github.io/web-exp/" class="help-icon" title="Hilfe"><strong>?</strong></a>
+                <div class="menu-icon" id="openMenuBtn" title="Menu">&#9776;</div> 
+            </div>
+        </div>
 
-        .menu-summary-row .total-label {
-            color: #4a5568;
-        }
-        .menu-summary-row .total-value {
-            color: #2d3748;
-        }
-        .menu-summary-row.bold .total-label,
-        .menu-summary-row.bold .total-value {
-            color: #2d3748;
-        }
-        @media (max-width: 480px) {
-            .app-container, .menu-interface-container {
-                padding: 20px; 
-            }
-            .header {
-                margin-bottom: 20px;
-            }
-            .app-title {
-                font-size: 1.6rem; 
-            }
-             .menu-icon {
-                font-size: 1.6rem; 
-            }
+        <div class="input-section">
+            <div class="input-row">
+                <span class="input-label">Vorlauf</span>
+                <div class="input-field-area bg-cyan-custom">
+                    <input type="number" class="value-input" id="vGradCInput" placeholder="0" aria-label="V input">
+                    <span class="unit">°C</span>
+                </div>
+            </div>
+            <div class="input-row">
+                <span class="input-label">Anlagen Höhe<br>über MAG</span>
+                <div class="input-field-area bg-cyan-custom">
+                    <input type="number" class="value-input" id="hMeterInput" placeholder="0" aria-label="H input">
+                    <span class="unit">m</span>
+                </div>
+            </div>
+            <div class="input-row">
+                <span class="input-label">Sicherheits<br>ventil</span>
+                <div class="input-field-area bg-cyan-custom">
+                    <input type="number" class="value-input" id="svBarInput" value="3" aria-label="SV input">
+                    <span class="unit">bar</span>
+                </div>
+            </div>
+            <div class="input-row">
+                <span class="input-label">Leistung für Heizung </span>
+                <div class="input-field-area bg-cyan-custom">
+                    <input type="number" class="value-input" id="leistungKwInput" placeholder="8" aria-label="L input">
+                    <span class="unit">kw</span>
+                </div>
+            </div>
+            <!-- Moved Zusatzfeld 1-4 area here -->
+            <div id="additionalInputsContainer" class="hidden">
+                <div class="input-row">
+                    
+                    <div class="input-field-area">
+                        <select class="value-input" id="gebaeudeartSelect" aria-label="Gebäudeart selection">
+                            <option value="">-- Bitte auswählen --</option>
+                            <option value="0.1">Passivhaus</option>
+                            <option value="0.15">Niedrigenergiehaus</option>
+                            <option disabled>──────────────────</option>
+                            <option value="0.35">Geb. n. EnEV 2016</option>
+                            <option value="1.09">Geb. n. EnEV 2009</option>
+                            <option value="1.29">Geb. n. EnEV 2002</option>
+                            <option value="1.91">Geb. n. WSchV 1995</option>
+                            <option value="2.83">Geb. n. DIN 4701</option>
+                            <option disabled>──────────────────</option>
+                            <option value="3.1">Altbau 1977 – 1983</option>
+                            <option value="4.29">Altbau 1970 – 1976</option>
+                            <option value="4.66">Altbau ab 1969</option>
+                            <option value="5.06">Altbau ab 1959</option>
+                            <option value="5">Altbau &lt; 1949 (Lehm)</option>
+                            <option value="5.24">Altbau &lt; 1949 (Ziegel)</option>
+                        </select>
+                   </div>
+                </div>
+                <div class="input-row">
+                    <span class="input-label">Wohnfläche</span>
+                    <div class="input-field-area">
+                        <input type="text" class="value-input" id="wohnflaecheInput" placeholder="0" aria-label="Wohnfläche">
+                        <span class="unit">m²</span>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <span class="input-label">norm<br>außentemperatur</span>
+                    <div class="input-field-area">
+                        <input type="text" class="value-input" id="normAussentempInput" placeholder="-11" aria-label="norm außentemperatur">
+                        <span class="unit">°C</span>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <span class="input-label">soll raum<br>temparatur</span>
+                    <div class="input-field-area">
+                        <input type="text" class="value-input" id="sollRaumtempInput" placeholder="20" aria-label="soll raum temparatur">
+                        <span class="unit">°C</span>
+                    </div>
+                </div>
+            </div>
+            <div class="nine-dots-symbol" id="nineDotsSymbol" >
+           leistung ermitteln
+            </div>
+        </div>
+
+        <div class="input-section">
+            <div class="input-row">
+                <span class="input-label">Pufferspeicher</span>
+                <div class="input-field-area bg-speicher-custom"> 
+                    <input type="number" class="value-input" id="speicherLiterInput" placeholder="0" aria-label="Speicher input">
+                    <span class="unit">Liter</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="input-field-sub-label">Radiator+Pla...+Kon...+Fuß... muss 100% sein </div>
+        <div class="input-section" id="allRadiatorTypesSection">
+            <div class="input-row">
+                <span class="input-label"><img src="img/app 1 r.jpg" alt="Radiator app 1 r.jpg" class="field-image">Radiator</span>
+                <div class="input-field-area bg-radiator-custom" id="radiatorFieldArea">
+                    <div class="red-area-for-image"> 
+                     </div>
+                
+                     <input type="number" class="value-input" id="mainRadiatorInput" placeholder="0" aria-label="Radiator input">
+                    <span class="unit">%</span>
+                </div>
+            </div>
+            <div class="input-row">
+                <span class="input-label"><img src="img/app 1 p.jpg" alt="Radiator app 1 p.jpg" class="field-image">Platten<br>heizkörper</span>
+                <div class="input-field-area bg-plattenheizkoerper-custom" id="plattenheizkoerperFieldArea"><div class="red-area-for-image"> 
+
+                     </div>
+
+                     <input type="number" class="value-input" id="plattenheizkoerperPercentInput" placeholder="0" aria-label="Plattenheizkörper input">
+                    <span class="unit">%</span>
+                </div>
+            </div>
+            <div class="input-row">
+                <span class="input-label"><img src="img/app 1 k.jpg" alt="Radiator app 1 k.jpg" class="field-image">Konvektor</span>
+                <div class="input-field-area bg-konvektor-custom" id="konvektorFieldArea"> 
+                    <div class="red-area-for-image"> 
+                     </div>
+                     <input type="number" class="value-input" id="konvektorPercentInput" placeholder="0" aria-label="Konvektor input">
+                    <span class="unit">%</span>
+                </div>
+            </div>
+            <div class="input-row">
+                <span class="input-label"><img src="img/app 1 f.jpg" alt="Radiator app 1 f.jpg" class="field-image">Fußboden<br>heizung</span>
+                <div class="input-field-area bg-fussbodenheizung-custom" id="fussbodenheizungFieldArea"> 
+                    <div class="red-area-for-image"> 
+                     </div>
+                     <input type="number" class="value-input" id="fussbodenheizungPercentInput" placeholder="0" aria-label="Fußbodenheizung input">
+                    <span class="unit">%</span>
+                </div>
+                
+            </div>
+                        
+        </div>
+        
+        <div class="input-section">
+            <div class="input-row">
+                <span class="input-label">MAG Liter</span>
+                <div class="input-field-area bg-lightblue-custom">
+                     <input type="text" class="value-input" id="magLiterResultInput" value="" aria-label="MAG Liter Result" readonly>
+                     <span class="unit-span">Liter</span>
+                </div>
+            </div>
+            <div class="input-row">
+                <span class="input-label">MAG Fülldruck</span> 
+                <div class="input-field-area bg-lightblue-custom">
+                     <input type="text" class="value-input" id="fuelldruckResultInput" value="" aria-label="Fülldruck bar Result" readonly>
+                     <span class="unit-span">bar</span>
+                </div>
+            </div>
+            <div class="input-field-sub-label">MAG Fülldruck im leeren zustand              </div>
+
+        </div>
+    </div>
+    
+
+    <div class="menu-interface-container hidden" id="menuInterfaceContainer">
+        <div class="header">
+            <div class="app-title">Menu</div> 
+            <div class="menu-icon" id="closeMenuBtn" title="Close Menu">&#9776;</div> 
+        </div>
+        <div class="menu-content">
+            <ul id="menuList">
+                <li id="menuRadiatorItem">
+                    <span class="item-name">Radiator</span> 
+                    <span class="value">14</span> <span class="calculated-value" id="menuRadiatorCalculatedValue">-</span></li>
+                <li id="menuPlattenheizkoerperItem">
+                    <span class="item-name">Plattenheizkörper</span> 
+                    <span class="value">10</span> <span class="calculated-value" id="menuPlattenheizkoerperCalculatedValue">-</span></li>
+                <li id="menuKonvektorItem">
+                    <span class="item-name">Konvektor</span> 
+                    <span class="value">6</span> <span class="calculated-value" id="menuKonvektorCalculatedValue">-</span></li>
+                <li id="menuFussbodenheizungItem">
+                    <span class="item-name">Fußbodenheizung</span> 
+                    <span class="value">20</span> <span class="calculated-value" id="menuFussbodenheizungCalculatedValue">-</span></li>
+            </ul>
+            <div class="menu-summary-row main-total">
+                <span class="total-label">Gesamt (Radiatoren):</span>
+                <span class="total-value" id="menuTotalSumValue">0.00</span>
+            </div>
+            <div class="menu-summary-row bold"> 
+                <span class="total-label">Endsumme Liter:</span>
+                <span class="total-value" id="menuFinalSumValue">0.00</span>
+            </div>
+            <div class="menu-summary-row normal-weight"> 
+                <span class="total-label">Ausdehnungsfaktor n:</span>
+                <span class="total-value" id="menuAusdehnungsfaktorValue">-</span>
+            </div>
+            <div class="menu-summary-row bold"> 
+                <span class="total-label">Ausdehnungsvolumen ΔV:</span>
+                <span class="total-value" id="menuAusdehnungsvolumenValue">0.00</span>
+            </div>
+            <div class="menu-summary-row bold"> 
+                <span class="total-label">pe1:</span>
+                <span class="total-value" id="menuPe1Value">0.00</span>
+            </div>
+            <div class="menu-summary-row bold"> 
+                <span class="total-label">pe2:</span>
+                <span class="total-value" id="menuPe2Value">0.00</span>
+            </div>
+            <div class="menu-summary-row bold"> 
+                <span class="total-label">Vv:</span>
+                <span class="total-value" id="menuVvValue">0.00</span>
+            </div>
+            <a href="https://jasper-drip.github.io/web-agb/" style="color: rgb(81, 125, 219);"><strong>AGB</strong></a>
             
-            .help-icon {
-                font-size: 1.6rem; 
-            }
-            .input-label { 
-                font-size: 0.95rem; 
-                padding: 12px 15px; 
-                width: 120px; 
-            }
-            .input-field-area {
-                font-size: 1rem;   
-                padding: 12px 15px;
-            }
-            .input-field-area.warning-bg::before {
-                font-size: 2.5rem; 
-            }
-             #radiatorSumWarning { 
-                font-size: 0.85rem; 
-            }
-            .value-input, .unit-span {
-                font-size: 1rem; 
-            }
-             .unit-span { color: #a0aec0; } 
-            .input-field-sub-label {
-                padding-right: 15px; 
-                font-size: 0.8rem;   
-                margin-bottom: 8px; 
-            }
+        </div>
+    </div>
 
-            .menu-content li {
-                font-size: 1rem;
-                padding: 12px 15px;
-            }
-            .menu-content li .item-name { flex-basis: 50%; } 
-            .menu-content li .value { flex-basis: 20%; }
-            .menu-content li .calculated-value { flex-basis: 30%; }
-            .menu-summary-row { 
-                font-size: 1rem;
-                padding: 14px 15px;
+
+    <script>
+        const mainAppContainer = document.getElementById('mainAppContainer');
+        const menuInterfaceContainer = document.getElementById('menuInterfaceContainer');
+        const openMenuBtn = document.getElementById('openMenuBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        const nineDotsSymbol = document.getElementById('nineDotsSymbol');
+        const additionalInputsContainer = document.getElementById('additionalInputsContainer');
+
+        const leistungKwInput = document.getElementById('leistungKwInput');
+        const speicherLiterInput = document.getElementById('speicherLiterInput'); 
+        const vGradCInput = document.getElementById('vGradCInput'); 
+        const hMeterInput = document.getElementById('hMeterInput'); 
+        const svBarInput = document.getElementById('svBarInput'); 
+        const magLiterResultInput = document.getElementById('magLiterResultInput'); 
+        const fuelldruckResultInput = document.getElementById('fuelldruckResultInput'); 
+
+        const menuListUl = document.getElementById('menuList'); 
+        const menuTotalSumValueSpan = document.getElementById('menuTotalSumValue'); 
+        const menuFinalSumValueSpan = document.getElementById('menuFinalSumValue'); 
+        const menuAusdehnungsfaktorValueSpan = document.getElementById('menuAusdehnungsfaktorValue'); 
+        const menuAusdehnungsvolumenValueSpan = document.getElementById('menuAusdehnungsvolumenValue'); 
+        const menuPe1ValueSpan = document.getElementById('menuPe1Value'); 
+        const menuPe2ValueSpan = document.getElementById('menuPe2Value'); 
+        const menuVvValueSpan = document.getElementById('menuVvValue');
+
+        // Inputs for Heizlast calculation
+        const gebaeudeartSelect = document.getElementById('gebaeudeartSelect');
+        const wohnflaecheInput = document.getElementById('wohnflaecheInput');
+        const normAussentempInput = document.getElementById('normAussentempInput');
+        const sollRaumtempInput = document.getElementById('sollRaumtempInput');
+
+        
+        const radiatorTypeInputs = {
+            "mainRadiatorInput": document.getElementById("mainRadiatorInput"),
+            "plattenheizkoerperPercentInput": document.getElementById("plattenheizkoerperPercentInput"),
+            "konvektorPercentInput": document.getElementById("konvektorPercentInput"),
+            "fussbodenheizungPercentInput": document.getElementById("fussbodenheizungPercentInput")
+        };
+
+        const radiatorFieldAreas = {
+            "mainRadiatorInput": document.getElementById("radiatorFieldArea"),
+            "plattenheizkoerperPercentInput": document.getElementById("plattenheizkoerperFieldArea"),
+            "konvektorPercentInput": document.getElementById("konvektorFieldArea"),
+            "fussbodenheizungPercentInput": document.getElementById("fussbodenheizungFieldArea")
+        };
+        const radiatorSumWarningDiv = document.getElementById('radiatorSumWarning'); 
+
+        const menuRadiatorData = [
+            { name: "radiator", baseValue: 14, resultSpanId: "menuRadiatorCalculatedValue", mainInputId: "mainRadiatorInput", labelText: "Radiator" }, 
+            { name: "plattenheizkörper", baseValue: 10, resultSpanId: "menuPlattenheizkoerperCalculatedValue", mainInputId: "plattenheizkoerperPercentInput", labelText: "Plattenheizkörper" },
+            { name: "konvektor", baseValue: 6, resultSpanId: "menuKonvektorCalculatedValue", mainInputId: "konvektorPercentInput", labelText: "Konvektor" },
+            { name: "fußbodenheizung", baseValue: 20, resultSpanId: "menuFussbodenheizungCalculatedValue", mainInputId: "fussbodenheizungPercentInput", labelText: "Fußbodenheizung" }
+        ];
+
+        const ausdehnungsfaktorTable = [
+            { temp: 40, factor: 0.0093 }, { temp: 50, factor: 0.0129 }, { temp: 60, factor: 0.0171 },
+            { temp: 70, factor: 0.0222 }, { temp: 80, factor: 0.0281 }, { temp: 90, factor: 0.0347 },
+            { temp: 100, factor: 0.0421 }, { temp: 110, factor: 0.0503 }, { temp: 120, factor: 0.0593 }
+        ];
+
+        let currentAusdehnungsfaktor = 0; 
+        let currentEndsumme = 0; 
+        let currentPe1 = 0; 
+        let currentPe2 = 0; 
+        let currentVv = 0;
+        let currentAusdehnungsvolumen = 0;
+        let currentMagLiter = 0; 
+
+        function calculateHeizlast() {
+            const gebaeudeartValue = parseFloat(gebaeudeartSelect.value) || 0;
+            const wohnflaeche = parseFloat(wohnflaecheInput.value) || 0;
+            // Use placeholder values as defaults if input is empty
+            const normAussentemp = parseFloat(normAussentempInput.value) || parseFloat(normAussentempInput.placeholder) || 0;
+            const sollRaumtemp = parseFloat(sollRaumtempInput.value) || parseFloat(sollRaumtempInput.placeholder) || 0;
+
+            // Only calculate if we have the necessary values
+            if (gebaeudeartValue > 0 && wohnflaeche > 0) {
+                // The user's formula: (soll raum + 273) - (norm außentemperatur + 273) simplifies to the temperature difference (Delta T)
+                const deltaT = sollRaumtemp - normAussentemp;
+                
+                // Formula: (DeltaT * Wohnfläche * Gebäudeart-Wert) / 1000
+                // This calculates the heating load in kW.
+                const heizlastW = deltaT * wohnflaeche * gebaeudeartValue;
+                const heizlastKw = heizlastW / 1000;
+
+                // Update the "Leistung für Heizung" input field
+                leistungKwInput.value = heizlastKw.toFixed(2);
+                
+                // Trigger the main calculation chain because "Leistung für Heizung" was updated
+                calculateAndUpdateMenuValues();
             }
         }
-.red-area-for-image {
-            margin-right: 0px; 
-        }
-        .field-image {
-            height: 30px;
-            width: 40px;  
-            display: block; 
-            border-radius: 0px;
-            margin-left: -8px; 
-            margin-right: 8px;  
+
+        function updateAusdehnungsfaktor() {
+            if (!vGradCInput || !menuAusdehnungsfaktorValueSpan) {
+                currentAusdehnungsfaktor = 0;
+                if(menuAusdehnungsfaktorValueSpan) menuAusdehnungsfaktorValueSpan.textContent = "-";
+                return;
             }
 
-       .nine-dots-symbol {
-            text-align: center;
-            color: #718096; /* A bit darker grey for better readability */
-            font-size: 14px;   /* Increased font size for the text */
-            font-weight: 500;
-            line-height: 1.5; /* Adjusted for better text readability */
-            margin-top: 4px; /* More space above */
-            margin-bottom: 4px; /* More space below */
-            cursor: pointer; /* Make it look clickable */
+            const currentTemp = parseFloat(vGradCInput.value) || 0;
+            let closestEntry = ausdehnungsfaktorTable[0];
+            let minDiff = Math.abs(currentTemp - closestEntry.temp);
+
+            for (let i = 1; i < ausdehnungsfaktorTable.length; i++) {
+                const diff = Math.abs(currentTemp - ausdehnungsfaktorTable[i].temp);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closestEntry = ausdehnungsfaktorTable[i];
+                } else if (diff === minDiff && ausdehnungsfaktorTable[i].temp > closestEntry.temp) {
+                    closestEntry = ausdehnungsfaktorTable[i];
+                }
+            }
+            currentAusdehnungsfaktor = closestEntry.factor; 
+            menuAusdehnungsfaktorValueSpan.textContent = currentAusdehnungsfaktor.toFixed(4).replace('.', ',');
+        }
+
+        function updatePe1Value() {
+            if (!vGradCInput || !hMeterInput || !menuPe1ValueSpan) {
+                 if(menuPe1ValueSpan) menuPe1ValueSpan.textContent = "0.00";
+                return;
+            }
+            const vValue = parseFloat(vGradCInput.value) || 0;
+            const hValue = parseFloat(hMeterInput.value) || 0;
+            let bFactor = 0;
+
+            if (vValue < 100) {
+                bFactor = 0;
+            } else if (vValue >= 100 && vValue <= 110) {
+                bFactor = 0.5;
+            } else if (vValue > 110) { 
+                bFactor = 1.0;
+            }
+
+            const hDividedBy10 = hValue / 10;
+            currentPe1 = bFactor + hDividedBy10;
+            menuPe1ValueSpan.textContent = currentPe1.toFixed(2);
+        }
+
+        function updatePe2Value() {
+            if (!svBarInput || !menuPe2ValueSpan) {
+                if (menuPe2ValueSpan) menuPe2ValueSpan.textContent = "0.00";
+                currentPe2 = 0; 
+                return;
+            }
+            const svValue = parseFloat(svBarInput.value) || 0;
+            const constantToSubtract = 0.5; 
+            currentPe2 = svValue - constantToSubtract;
+            menuPe2ValueSpan.textContent = currentPe2.toFixed(2);
+        }
+
+        function checkAndApplyRadiatorWarning() {
+            let totalPercent = 0;
+            Object.values(radiatorTypeInputs).forEach(input => {
+                if (input) { 
+                    totalPercent += parseFloat(input.value) || 0;
+                }
+            });
+
+            const shouldWarn = totalPercent > 100;
+
+            if (radiatorSumWarningDiv) { 
+                if (shouldWarn) {
+                    radiatorSumWarningDiv.classList.remove('hidden');
+                } else {
+                    radiatorSumWarningDiv.classList.add('hidden');
+                }
+            }
+
+            Object.keys(radiatorTypeInputs).forEach(key => { 
+                const fieldArea = radiatorFieldAreas[key]; 
+                if (fieldArea) {
+                    if (shouldWarn) {
+                        fieldArea.classList.add('warning-bg');
+                    } else {
+                        fieldArea.classList.remove('warning-bg');
+                    }
+                }
+            });
+        }
+
+
+        function calculateAndUpdateMenuValues() {
+            updateAusdehnungsfaktor(); 
+            updatePe1Value(); 
+            updatePe2Value(); 
+            checkAndApplyRadiatorWarning(); 
+
+            const leistungKw = parseFloat(leistungKwInput.value) || 0;
+            let sumOfCalculatedRadiatorValues = 0; 
+            let sumOfRadiatorPercentages = 0; 
+
+            menuRadiatorData.forEach(item => {
+                const resultSpan = document.getElementById(item.resultSpanId);
+                if (!resultSpan) return;
+
+                const percentInput = radiatorTypeInputs[item.mainInputId]; 
+                
+                let percentValue = 0;
+                if (percentInput) {
+                    percentValue = parseFloat(percentInput.value) || 0;
+                    sumOfRadiatorPercentages += percentValue; 
+                }
+                
+                const calculatedValue = (percentValue / 100) * leistungKw * item.baseValue;
+                resultSpan.textContent = calculatedValue.toFixed(2);
+                sumOfCalculatedRadiatorValues += calculatedValue;
+            });
+
+            if (menuTotalSumValueSpan) {
+                menuTotalSumValueSpan.textContent = sumOfCalculatedRadiatorValues.toFixed(2);
+            }
+
+            const speicherValue = parseFloat(speicherLiterInput.value) || 0;
+
+            if (menuFinalSumValueSpan) {
+                currentEndsumme = sumOfCalculatedRadiatorValues + speicherValue; 
+                menuFinalSumValueSpan.textContent = currentEndsumme.toFixed(2);
+            }
+
+            if (menuAusdehnungsvolumenValueSpan) {
+                currentAusdehnungsvolumen = currentEndsumme * currentAusdehnungsfaktor; 
+                menuAusdehnungsvolumenValueSpan.textContent = currentAusdehnungsvolumen.toFixed(2);
+            }
+
+            if (menuVvValueSpan) {
+                currentVv = currentEndsumme * 0.005; 
+                menuVvValueSpan.textContent = currentVv.toFixed(2);
+            }
+
+        
+            if (sumOfRadiatorPercentages !== 100 || leistungKw === 0) {
+                currentMagLiter = 0;
+                if (magLiterResultInput) magLiterResultInput.value = "0.00";
+                if (fuelldruckResultInput) fuelldruckResultInput.value = "0.00";
+            } else {
+                if (magLiterResultInput) {
+                    if ((currentPe2 - currentPe1) !== 0) { 
+                        currentMagLiter = (currentAusdehnungsvolumen + currentVv) * ((currentPe2 + 1) / (currentPe2 - currentPe1));
+                    } else {
+                        currentMagLiter = "Error"; 
+                    }
+                    magLiterResultInput.value = (typeof currentMagLiter === 'number') ? currentMagLiter.toFixed(2) : currentMagLiter;
+                }
+
+                if (fuelldruckResultInput) {
+                    let fuelldruckValue = 0;
+                    if (currentMagLiter !== "Error" && (currentMagLiter - currentVv) !== 0 && typeof currentMagLiter === 'number') {
+                        fuelldruckValue = (((currentPe1 + 1) * currentMagLiter) / (currentMagLiter - currentVv)) - 1;
+                    } else {
+                      
+                        fuelldruckValue = 0; 
+                    }
+                    fuelldruckResultInput.value = (typeof fuelldruckValue === 'number') ? fuelldruckValue.toFixed(2) : fuelldruckValue;
+                }
+            }           
+            
+
+
         }
         
-        #gebaeudeartSelect {
-            font-size: 0.95rem; /* Slimmer font size */
-            font-weight: 400;   /* Normal font weight for a slimmer look */
-            text-align: right;  /* Align text to the right side */
+        function resetAllValues() {
+            // Reset main inputs to their default/initial state
+            vGradCInput.value = '';
+            hMeterInput.value = '';
+            svBarInput.value = '3'; // Has a default value
+            leistungKwInput.value = '';
+            speicherLiterInput.value = '';
+
+            // Reset radiator percentage inputs
+            Object.values(radiatorTypeInputs).forEach(input => {
+                if (input) input.value = '';
+            });
+
+            // Reset Heizlast calculation inputs
+            gebaeudeartSelect.value = ''; // Select the "-- Bitte auswählen --" option
+            wohnflaecheInput.value = '';
+            normAussentempInput.value = '';
+            sollRaumtempInput.value = '';
+
+            // Hide the additional inputs container
+            additionalInputsContainer.classList.add('hidden');
+
+            // Recalculate everything to update result fields and menu to reflect the reset state
+            calculateAndUpdateMenuValues();
         }
 
+        if (openMenuBtn && mainAppContainer && menuInterfaceContainer) {
+            openMenuBtn.addEventListener('click', () => {
+                try {
+                    calculateAndUpdateMenuValues();
+                } catch (e) {
+                    console.error("Error during menu value calculation:", e);
+                    
+                }
+                mainAppContainer.classList.add('hidden');
+                menuInterfaceContainer.classList.remove('hidden');
+            });
+        } else {
+           
+            if (!openMenuBtn) console.error("Error: Button with ID 'openMenuBtn' not found.");
+            if (!mainAppContainer) console.error("Error: Container with ID 'mainAppContainer' not found.");
+            if (!menuInterfaceContainer) console.error("Error: Container with ID 'menuInterfaceContainer' not found.");
+        }
+
+        if (closeMenuBtn && mainAppContainer && menuInterfaceContainer) { 
+            closeMenuBtn.addEventListener('click', () => {
+                menuInterfaceContainer.classList.add('hidden');
+                mainAppContainer.classList.remove('hidden');
+            });
+        } else {
+            if (!closeMenuBtn) console.error("Error: Button with ID 'closeMenuBtn' not found.");
+            
+            if (!mainAppContainer && !(openMenuBtn && menuInterfaceContainer)) console.error("Error: Container with ID 'mainAppContainer' not found (related to close menu logic).");
+            if (!menuInterfaceContainer && !(openMenuBtn && mainAppContainer)) console.error("Error: Container with ID 'menuInterfaceContainer' not found (related to close menu logic).");
+        }
+
+        if (nineDotsSymbol && additionalInputsContainer) {
+            nineDotsSymbol.addEventListener('click', () => {
+                additionalInputsContainer.classList.toggle('hidden');
+            });
+        } else {
+            if (!nineDotsSymbol) console.error("Error: Element with ID 'nineDotsSymbol' not found.");
+            if (!additionalInputsContainer) console.error("Error: Element with ID 'additionalInputsContainer' not found.");
+        }
+
+        if (resetBtn) {
+            resetBtn.addEventListener('click', resetAllValues);
+        } else {
+            console.error("Error: Element with ID 'resetBtn' not found.");
+        }
+     
+        [leistungKwInput, speicherLiterInput, vGradCInput, hMeterInput, svBarInput, 
+         radiatorTypeInputs.mainRadiatorInput, 
+         radiatorTypeInputs.plattenheizkoerperPercentInput,
+         radiatorTypeInputs.konvektorPercentInput,
+         radiatorTypeInputs.fussbodenheizungPercentInput
+        ].forEach(input => {
+            if (input) {
+                input.addEventListener('input', calculateAndUpdateMenuValues);
+            }
+        });
+
+        // Add event listeners for the new heating load calculation
+        [gebaeudeartSelect, wohnflaecheInput, normAussentempInput, sollRaumtempInput].forEach(input => {
+            if (input) {
+                input.addEventListener('input', calculateHeizlast);
+            }
+        });
+
+        window.addEventListener('load', calculateAndUpdateMenuValues);
+
+      
+        const allInputs = [
+            vGradCInput,
+            hMeterInput,
+            svBarInput,
+            leistungKwInput,
+            speicherLiterInput,
+            radiatorTypeInputs.mainRadiatorInput,
+            radiatorTypeInputs.plattenheizkoerperPercentInput,
+            radiatorTypeInputs.konvektorPercentInput,
+            radiatorTypeInputs.fussbodenheizungPercentInput
+        ].filter(input => input); 
+
+        allInputs.forEach((input, index) => {
+            input.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); 
+                    const nextInput = allInputs[index + 1];
+                    if (nextInput) {
+                        nextInput.focus();
+                    }
+                }
+            });
+        });
+        
+    </script>
+</body>
+</html>
